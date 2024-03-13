@@ -32,7 +32,7 @@ with st.container():
     st.subheader("¿Qué pasa cabrones?")
     st.title("Wir sind die Alkocops! :wave:")
     st.write(
-        "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ""sozialkritische Faust ins Gesicht"", aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
+        "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
     )
     st.write("[ 📸 Instagram >](https://www.instagram.com/alkocops/?hl=de)")
     st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
@@ -46,16 +46,10 @@ with st.container():
     left_column, right_column = st.columns(2)
     with left_column:
         st.header("Konzerte")
-        st.write("##")
-        st.write(
-            """
-            2024:
-
-            23.03.      Laut für Vielfalt! im SAK Lörrach (mit Skabooom et al.)
-            05.04.      Schlosskeller Emmendingen (mit Wagner Brutal)
-            18.05.      Sonnenkeller Balingen (mit The Snouts und Der Ganze Rest)
-            """
-        )
+        st.subheader("2024:")
+        st.write("23.03. Laut für Vielfalt! im SAK Lörrach (mit Skabooom et al.)")
+        st.write("05.04. Schlosskeller Emmendingen (mit Wagner Brutal)")
+        st.write("18.05. Sonnenkeller Balingen (mit The Snouts und Der Ganze Rest)")
     with right_column:
         st_lottie(lottie_coding, height=300, key="coding")
 
@@ -91,20 +85,20 @@ with st.container():
         )
         st.markdown("[Watch Video...](https://youtu.be/FOULV9Xij_8)")
 
-# ---- CONTACT ----
+# ---- KONTAKT-FORMULAR ----
 with st.container():
     st.write("---")
-    st.header("Get In Touch With Me!")
+    st.header("Kontaktiere uns!")
     st.write("##")
 
     # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
     contact_form = """
     <form action="https://formsubmit.co/YOUR@MAIL.COM" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Your email" required>
-        <textarea name="message" placeholder="Your message here" required></textarea>
-        <button type="submit">Send</button>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="E-Mail-Adresse" required>
+        <textarea name="message" placeholder="Deine Nachricht" required></textarea>
+        <button type="submit">Senden</button>
     </form>
     """
     left_column, right_column = st.columns(2)
