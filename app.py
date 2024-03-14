@@ -5,7 +5,7 @@ from PIL import Image
 
 
 # Find more emojis here: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Die Alkocops", page_icon="🍻", layout="wide")
+st.set_page_config(page_title="Die Alkocops", page_icon="🍺", layout="wide")
 
 def load_lottieurl(url):
     r = requests.get(url)
@@ -29,28 +29,31 @@ img_lottie_animation = Image.open("images/yt_lottie_animation.png")
 
 # ---- HEADER SECTION ----
 with st.container():
-    st.subheader("¿Qué pasa cabrones?")
-    st.title("Wir sind die Alkocops! :wave:")
-    st.write(
-        "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
-    )
-    st.write("[ 📸 Instagram >](https://www.instagram.com/alkocops/?hl=de)")
-    st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
-    st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
-    st.write("[ 🎥 YouTube >](https://www.youtube.com/@diealkocops6613)")
+    st.write("---")
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.subheader("¿Qué pasa cabrones?")
+        st.title("Wir sind die Alkocops! 🍻")
+        st.write(
+            "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
+        )
+        st.write("[ 📸 Instagram >](https://www.instagram.com/alkocops/?hl=de)")
+        st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
+        st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
+        st.write("[ 🎥 YouTube >](https://www.youtube.com/@diealkocops6613)")
 
     
 # ---- KONZERTE ----
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
-    with left_column:
+    with right_column:
         st.header("Konzerte")
         st.subheader("2024:")
         st.write("23.03. Laut für Vielfalt! im SAK Lörrach (mit Skabooom et al.)")
         st.write("05.04. Schlosskeller Emmendingen (mit Wagner Brutal)")
         st.write("18.05. Sonnenkeller Balingen (mit The Snouts und Der Ganze Rest)")
-    with right_column:
+    with left_column:
         st_lottie(lottie_coding, height=300, key="coding")
 
 # ---- PROJECTS ----
@@ -89,6 +92,7 @@ with st.container():
 with st.container():
     st.write("---")
     st.header("Kontaktiere uns!")
+    st.write("Wenn du Fragen, Anregungen oder Anfragen für Konzerte hast, gib' uns gerne Bescheid. Wir melden uns bei dir!")
     st.write("##")
 
     # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
