@@ -26,8 +26,8 @@ local_css("style/style.css")
 lottie_rock = load_lottieurl("https://lottie.host/c27869d1-603f-4f6e-9b91-fc2cf17c128d/xnNh83q1DP.json")
 lottie_bier = load_lottieurl("https://lottie.host/95df498a-2d7a-4abb-8eb3-a8542f8759f7/Mbflv91AhA.json")
 
-img_contact_form = Image.open("images/yt_contact_form.png")
-img_lottie_animation = Image.open("images/yt_lottie_animation.png")
+img_band1 = Image.open("images/foto1.jpg")
+img_band2 = Image.open("images/foto2.jpg")
 
 # ---- HEADER SECTION ----
 with st.container():
@@ -44,7 +44,7 @@ with st.container():
         st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
         st.write("[ 🎥 YouTube >](https://www.youtube.com/@diealkocops6613)")
     with image_column:
-        st.image(img_lottie_animation)
+        st.image(img_band2)
     
 # ---- KONZERTE ----
 with st.container():
@@ -100,8 +100,8 @@ with st.container():
 
     # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
     contact_form = """
-    <form action="https://formsubmit.co/YOUR@MAIL.COM" method="POST">
-        <input type="hidden" name="_captcha" value="false">
+    <form action="https://formsubmit.co/laurent_kurzschenkel@hotmail.de" method="POST">
+        <input type="hidden" name="_captcha" value="true">
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="E-Mail-Adresse" required>
         <textarea name="message" placeholder="Deine Nachricht" required></textarea>
