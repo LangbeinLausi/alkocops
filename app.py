@@ -23,15 +23,17 @@ def local_css(file_name):
 local_css("style/style.css")
 
 # ---- LOAD ASSETS ----
-lottie_coding = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_fcfjwiyb.json")
+lottie_rock = load_lottieurl("https://lottie.host/c27869d1-603f-4f6e-9b91-fc2cf17c128d/xnNh83q1DP.json")
+lottie_bier = load_lottieurl("https://lottie.host/95df498a-2d7a-4abb-8eb3-a8542f8759f7/Mbflv91AhA.json")
+
 img_contact_form = Image.open("images/yt_contact_form.png")
 img_lottie_animation = Image.open("images/yt_lottie_animation.png")
 
 # ---- HEADER SECTION ----
 with st.container():
     st.write("---")
-    left_column, right_column = st.columns(2)
-    with left_column:
+    text_column, image_column = st.columns(2)
+    with text_column:
         st.subheader("¿Qué pasa cabrones?")
         st.title("Wir sind die Alkocops! 🍻")
         st.write(
@@ -41,7 +43,8 @@ with st.container():
         st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
         st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
         st.write("[ 🎥 YouTube >](https://www.youtube.com/@diealkocops6613)")
-
+    with image_column:
+        st.image(img_lottie_animation)
     
 # ---- KONZERTE ----
 with st.container():
@@ -54,39 +57,39 @@ with st.container():
         st.write("05.04. Schlosskeller Emmendingen (mit Wagner Brutal)")
         st.write("18.05. Sonnenkeller Balingen (mit The Snouts und Der Ganze Rest)")
     with left_column:
-        st_lottie(lottie_coding, height=300, key="coding")
+        st_lottie(lottie_rock, height=300, key="rock")
 
 # ---- PROJECTS ----
-with st.container():
-    st.write("---")
-    st.header("My Projects")
-    st.write("##")
-    image_column, text_column = st.columns((1, 2))
-    with image_column:
-        st.image(img_lottie_animation)
-    with text_column:
-        st.subheader("Integrate Lottie Animations Inside Your Streamlit App")
-        st.write(
-            """
-            Learn how to use Lottie Files in Streamlit!
-            Animations make our web app more engaging and fun, and Lottie Files are the easiest way to do it!
-            In this tutorial, I'll show you exactly how to do it
-            """
-        )
-        st.markdown("[Watch Video...](https://youtu.be/TXSOitGoINE)")
-with st.container():
-    image_column, text_column = st.columns((1, 2))
-    with image_column:
-        st.image(img_contact_form)
-    with text_column:
-        st.subheader("How To Add A Contact Form To Your Streamlit App")
-        st.write(
-            """
-            Want to add a contact form to your Streamlit website?
-            In this video, I'm going to show you how to implement a contact form in your Streamlit app using the free service ‘Form Submit’.
-            """
-        )
-        st.markdown("[Watch Video...](https://youtu.be/FOULV9Xij_8)")
+# with st.container():
+#     st.write("---")
+#     st.header("My Projects")
+#     st.write("##")
+#     image_column, text_column = st.columns((1, 2))
+#     with image_column:
+#         st.image(img_lottie_animation)
+#     with text_column:
+#         st.subheader("Integrate Lottie Animations Inside Your Streamlit App")
+#         st.write(
+#             """
+#             Learn how to use Lottie Files in Streamlit!
+#             Animations make our web app more engaging and fun, and Lottie Files are the easiest way to do it!
+#             In this tutorial, I'll show you exactly how to do it
+#             """
+#         )
+#         st.markdown("[Watch Video...](https://youtu.be/TXSOitGoINE)")
+# with st.container():
+#     image_column, text_column = st.columns((1, 2))
+#     with image_column:
+#         st.image(img_contact_form)
+#     with text_column:
+#         st.subheader("How To Add A Contact Form To Your Streamlit App")
+#         st.write(
+#             """
+#             Want to add a contact form to your Streamlit website?
+#             In this video, I'm going to show you how to implement a contact form in your Streamlit app using the free service ‘Form Submit’.
+#             """
+#         )
+#         st.markdown("[Watch Video...](https://youtu.be/FOULV9Xij_8)")
 
 # ---- KONTAKT-FORMULAR ----
 with st.container():
