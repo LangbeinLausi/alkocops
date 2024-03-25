@@ -25,6 +25,7 @@ local_css("style/style.css")
 # ---- LOAD ASSETS ----
 lottie_rock = load_lottieurl("https://lottie.host/c27869d1-603f-4f6e-9b91-fc2cf17c128d/xnNh83q1DP.json")
 lottie_bier = load_lottieurl("https://lottie.host/95df498a-2d7a-4abb-8eb3-a8542f8759f7/Mbflv91AhA.json")
+lottie_vinyl = load_lottieurl("https://lottie.host/6592ef39-bb59-47c6-8561-ffc732191a9e/bxry2ZUP2n.json")
 
 img_band1 = Image.open("images/foto1.jpg")
 img_band2 = Image.open("images/foto2.jpg")
@@ -39,6 +40,8 @@ with st.container():
         st.write(
             "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
         )
+        st.write(" ")
+        st.write(" ")
         st.write("[ 📸 Instagram >](https://www.instagram.com/alkocops/?hl=de)")
         st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
         st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
@@ -53,63 +56,56 @@ with st.container():
     with right_column:
         st.header("Konzerte")
         st.subheader("2024:")
-        st.write("23.03. Laut für Vielfalt! im SAK Lörrach (mit Skabooom et al.)")
-        st.write("05.04. Schlosskeller Emmendingen (mit Wagner Brutal)")
-        st.write("18.05. Sonnenkeller Balingen (mit The Snouts und Der Ganze Rest)")
+        st.write("18.05. // Sonnenkeller Balingen // The Snouts und Der Ganze Rest")
+        st.write("05.04. // Schlosskeller Emmendingen // Wagner Brutal")
+        st.write("23.03. // Laut für Vielfalt! im SAK Lörrach // Skabooom")
+        st.write("09.03. // Schlosskeller Emmendingen // Nevermind")
+        st.subheader("2023:")
+        st.write("15.12. // Crash Freiburg // ")
+        st.write("09.08. // Café Atlantik Freiburg // Maid of Ace")
+        st.write("22.04. // Battle to Exist in der Alten VHS Bonn // Die Manfreds")
+        st.write("15.12. // Crash Freiburg // ")
+        st.subheader("2022:")
+        st.write("19.11. // Schlosskeller Emmendingen // The Snouts & Skaboom")
+        st.write("05.11. // DISTROY Festival in der KTS Freiburg // ")
+        st.write("21.10. // Rockcafé Altdorf // KID-O")
+        st.write("24.09. // Eimer Freiburg // Area South")
+        st.write("08.07. // Reboot Festival im Eschholzpark Freiburg // ")
+        st.write("26.06. // Freiburg stimmt ein im Artik Freiburg // ")
+        st.write("18.06. // Cool Club Kinderweide in Königsfeld // Skabooom")
+        st.write("14.05. // Album-Release-Party im JuZe Emmendingen // Skabooom")
+        st.subheader("2021:")
+        st.write("16.10. // JuZe Denzlingen // Skabooom & Zirka")
+        st.write("04.07. // Freiburg stimm ein im Artik Freiburg // ")
+        st.subheader("2020:")
+        st.write("09.05. // Corona-Livestream aus dem JuZe Emmendingen // ")
+        st.subheader("2019:")
+        st.write("23.06. // KTS Freiburg // Heavy Kind & Vain")
+        st.write("06.04. // Hinterhaus Emmendingen // Heavy Kind & Vain")
     with left_column:
         st_lottie(lottie_rock, height=300, key="rock")
+        st_lottie(lottie_bier, height=300, key="beer")
+        st_lottie(lottie_vinyl, height=300, key="vinyl")
 
-# ---- PROJECTS ----
+# # ---- KONTAKT-FORMULAR ----
 # with st.container():
 #     st.write("---")
-#     st.header("My Projects")
+#     st.header("Kontaktiere uns!")
+#     st.write("Wenn du Fragen, Anregungen oder Anfragen für Konzerte hast, gib' uns gerne Bescheid. Wir melden uns bei dir!")
 #     st.write("##")
-#     image_column, text_column = st.columns((1, 2))
-#     with image_column:
-#         st.image(img_lottie_animation)
-#     with text_column:
-#         st.subheader("Integrate Lottie Animations Inside Your Streamlit App")
-#         st.write(
-#             """
-#             Learn how to use Lottie Files in Streamlit!
-#             Animations make our web app more engaging and fun, and Lottie Files are the easiest way to do it!
-#             In this tutorial, I'll show you exactly how to do it
-#             """
-#         )
-#         st.markdown("[Watch Video...](https://youtu.be/TXSOitGoINE)")
-# with st.container():
-#     image_column, text_column = st.columns((1, 2))
-#     with image_column:
-#         st.image(img_contact_form)
-#     with text_column:
-#         st.subheader("How To Add A Contact Form To Your Streamlit App")
-#         st.write(
-#             """
-#             Want to add a contact form to your Streamlit website?
-#             In this video, I'm going to show you how to implement a contact form in your Streamlit app using the free service ‘Form Submit’.
-#             """
-#         )
-#         st.markdown("[Watch Video...](https://youtu.be/FOULV9Xij_8)")
 
-# ---- KONTAKT-FORMULAR ----
-with st.container():
-    st.write("---")
-    st.header("Kontaktiere uns!")
-    st.write("Wenn du Fragen, Anregungen oder Anfragen für Konzerte hast, gib' uns gerne Bescheid. Wir melden uns bei dir!")
-    st.write("##")
-
-    # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
-    contact_form = """
-    <form action="https://formsubmit.co/laurent_kurzschenkel@hotmail.de" method="POST">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="E-Mail-Adresse" required>
-        <textarea name="message" placeholder="Deine Nachricht" required></textarea>
-        <button type="submit">Senden</button>
-    </form>
-    """
-    left_column, right_column = st.columns(2)
-    with left_column:
-        st.markdown(contact_form, unsafe_allow_html=True)
-    with right_column:
-        st.empty()
+#     # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
+#     contact_form = """
+#     <form action="https://formsubmit.co/laurent_kurzschenkel@hotmail.de" method="POST">
+#         <input type="hidden" name="_captcha" value="true">
+#         <input type="text" name="name" placeholder="Name" required>
+#         <input type="email" name="email" placeholder="E-Mail-Adresse" required>
+#         <textarea name="message" placeholder="Deine Nachricht" required></textarea>
+#         <button type="submit">Senden</button>
+#     </form>
+#     """
+#     left_column, right_column = st.columns(2)
+#     with left_column:
+#         st.markdown(contact_form, unsafe_allow_html=True)
+#     with right_column:
+#         st.empty()
