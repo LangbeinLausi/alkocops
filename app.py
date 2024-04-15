@@ -40,8 +40,8 @@ with st.container():
             "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
         )
         st.write(" ")
-        st.write("Die Alkocops sind Florian Silberblick, Huckleberry Gin, Marius Müller-Thurgau, Dr. Don Promillo und Toni Pilsetti (v.l.n.r.).")
-        st.write(" ")
+        # st.write("Die Alkocops sind Florian Silberblick, Huckleberry Gin, Marius Müller-Thurgau, Dr. Don Promillo und Toni Pilsetti (v.l.n.r.).")
+        # st.write(" ")
         st.write("[ 📸 Instagram >](https://www.instagram.com/alkocops/?hl=de)")
         st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
         st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
@@ -49,10 +49,12 @@ with st.container():
     with image_column:
         st.image(img_band2)
     
-# ---- KONZERTE ----
+# ---- KONZERTE ---- 
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
+    with left_column:
+        st_lottie(lottie_bier, height=600, key="beer")
     with right_column:
         st.header("Konzerte")
         st.subheader("2024:")
@@ -87,9 +89,6 @@ with st.container():
         st.write("23.06. // KTS Freiburg // Heavy Kind & Vain")
         st.write("06.04. // Hinterhaus Emmendingen // Heavy Kind & Vain")
         st.write(" ")
-    with left_column:
-        st_lottie(lottie_rock, height=600, key="rock")
-        st_lottie(lottie_bier, height=600, key="beer")
 
 # # ---- KONTAKT-FORMULAR ----
 # with st.container():
