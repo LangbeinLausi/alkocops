@@ -104,7 +104,12 @@ with st.container():
         st.write(" ")
         st.subheader("2019:")
         st.write("23.06. // KTS Freiburg // Heavy Kind & Vain")
-        st.write("06.04. // Hinterhaus Emmendingen // Heavy Kind & Vain")
+        st.write("06.04. // Hinterhaus Emmendingen // Heavy Kind & Vain")        
+        st.write("Irgendwann mal // White Rabbit Freiburg // ")
+        st.write(" ")
+        st.subheader("2018:")
+        st.write("Irgendwann mal // Jugendzentrum Stühlinger // The Privateers")
+        st.write("Irgendwann mal // White Rabbit Freiburg // ")
         st.write(" ")
 
 # # ---- KONTAKT-FORMULAR ----
