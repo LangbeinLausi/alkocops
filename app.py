@@ -29,6 +29,13 @@ lottie_bier = load_lottieurl("https://lottie.host/95df498a-2d7a-4abb-8eb3-a8542f
 img_band1 = Image.open("images/foto1.jpg")
 img_band2 = Image.open("images/foto2.jpg")
 
+html_code1 = '''
+<iframe style="border: 1; width: 600px; height: 600px;" src="https://bandcamp.com/EmbeddedPlayer/album=805318199/size=large/bgcol=333333/linkcol=e99708/artwork=small/transparent=true/" seamless><a href="https://diealkocops.bandcamp.com/album/fl-ssiges-gold">Flüssiges Gold von Die Alkocops</a></iframe>
+'''
+
+html_code2 = '''
+<iframe style="border-radius:2px" src="https://open.spotify.com/embed/artist/6UolTF33q9gCE3kDK6tuTU?utm_source=generator&theme=0" width="100%" height="600" frameBorder="12" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'''
+
 # ---- HEADER SECTION ----
 with st.container():
     st.write("---")
@@ -48,14 +55,24 @@ with st.container():
         st.write("[ 🎥 YouTube >](https://www.youtube.com/@diealkocops6613)")
     with image_column:
         st.image(img_band2)
-    
-# ---- KONZERTE ---- 
+
+# ---- SPOTIFY ----
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column:
         st_lottie(lottie_bier, height=600, key="beer")
     with right_column:
+        st.header("Kostprobe")
+        st.write(html_code2, unsafe_allow_html=True)
+
+# ---- KONZERTE ---- 
+with st.container():
+    st.write("---")
+    left_column, right_column = st.columns(2)
+    with right_column:
+        st_lottie(lottie_rock, height=600, key="rock")
+    with left_column:
         st.header("Konzerte")
         st.subheader("2024:")
         st.write("18.05. // Sonnenkeller Balingen // The Snouts und Der Ganze Rest")
