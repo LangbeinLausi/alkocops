@@ -13,12 +13,10 @@ def load_lottieurl(url):
         return None
     return r.json()
 
-
 # Use local CSS
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
 
 local_css("style/style.css")
 
@@ -29,12 +27,8 @@ lottie_bier = load_lottieurl("https://lottie.host/95df498a-2d7a-4abb-8eb3-a8542f
 img_band1 = Image.open("images/foto1.jpg")
 img_band2 = Image.open("images/foto2.jpg")
 
-html_code1 = '''
-<iframe style="border: 1; width: 600px; height: 600px;" src="https://bandcamp.com/EmbeddedPlayer/album=805318199/size=large/bgcol=333333/linkcol=e99708/artwork=small/transparent=true/" seamless><a href="https://diealkocops.bandcamp.com/album/fl-ssiges-gold">Flüssiges Gold von Die Alkocops</a></iframe>
-'''
-
-html_code2 = '''
-<iframe style="border-radius:2px" src="https://open.spotify.com/embed/artist/6UolTF33q9gCE3kDK6tuTU?utm_source=generator&theme=0" width="100%" height="600" frameBorder="12" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'''
+html_code = '''
+<iframe style="border-radius:0px" src="https://open.spotify.com/embed/artist/6UolTF33q9gCE3kDK6tuTU?utm_source=generator&theme=0" width="100%" height="600" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'''
 
 # ---- HEADER SECTION ----
 with st.container():
@@ -43,16 +37,15 @@ with st.container():
     with text_column:
         st.subheader("¿Qué pasa cabrones?")
         st.title("Wir sind die Alkocops! 🍻")
-        st.write(
-            "Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!"
-        )
+        st.write("Ob Wohnungsmarkt, Clubsterben oder Craftbier: Die Alkocops haben etwas dagegen. Laut ChatGPT sind ihre Lieder wohl eine ''sozialkritische Faust ins Gesicht'', aber bescheiden wie sie sind, konzentrieren sie sich lieber auf das Wesentliche: Dosenbier verhaften!")
         st.write(" ")
-        # st.write("Die Alkocops sind Florian Silberblick, Huckleberry Gin, Marius Müller-Thurgau, Dr. Don Promillo und Toni Pilsetti (v.l.n.r.).")
-        # st.write(" ")
+        st.write("Die Alkocops sind Florian Silberblick, Huckleberry Gin, Marius Müller-Thurgau, Dr. Don Promillo und Toni Pilsetti.")
+        st.write(" ")
         st.write("[ 📸 Instagram >](https://www.instagram.com/alkocops/?hl=de)")
         st.write("[ 🎵 Spotify >](https://open.spotify.com/intl-de/artist/6UolTF33q9gCE3kDK6tuTU?si=up3DRDMuQs6PF3vsJ1ZHhQ)")
         st.write("[ 🏕 Bandcamp >](https://diealkocops.bandcamp.com/)")
         st.write("[ 🎥 YouTube >](https://www.youtube.com/@diealkocops6613)")
+        st.write(" ")
     with image_column:
         st.image(img_band2)
 
@@ -64,7 +57,7 @@ with st.container():
         st_lottie(lottie_bier, height=600, key="beer")
     with right_column:
         st.header("Kostprobe")
-        st.write(html_code2, unsafe_allow_html=True)
+        st.write(html_code, unsafe_allow_html=True)
 
 # ---- KONZERTE ---- 
 with st.container():
