@@ -54,9 +54,11 @@ with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column:
-        st_lottie(lottie_bier, height=600, key="beer")
+        st.header("Flüssiges Gold")
+        st.write("Goldfarben, naturtrüb und mit vollmundigem Geschmack ist das Album ''Flüssiges Gold'' der Alkocops eine ehrliche Erfrischung. Ein wahrhaft gutes Album kann nur entstehen, wenn man von allem nur das Beste nimmt. Kompromisslos.")
+        st.write("Weil uns das Wohl anspruchsvoller Kenner am Herzen liegt. Und weil ''Flüssiges Gold'' immer das bleiben soll, was es akzeptiertermaßen ist: Eines der süffigsten Alben unserer Zeit.")
+        st.write(" ")
     with right_column:
-        st.header("Kostprobe")
         st.write(html_code, unsafe_allow_html=True)
 
 # ---- KONZERTE ---- 
@@ -97,33 +99,11 @@ with st.container():
         st.write(" ")
         st.subheader("2019:")
         st.write("23.06. // KTS Freiburg // Heavy Kind & Vain")
-        st.write("06.04. // Hinterhaus Emmendingen // Heavy Kind & Vain")        
+        st.write("06.04. // Hinterhaus Emmendingen // ")        
         st.write("Irgendwann mal // White Rabbit Freiburg // ")
         st.write(" ")
         st.subheader("2018:")
         st.write("Irgendwann mal // Jugendzentrum Stühlinger // The Privateers")
-        st.write("Irgendwann mal // White Rabbit Freiburg // ")
+        st.write("15.08. // White Rabbit Freiburg // ")
         st.write(" ")
 
-# # ---- KONTAKT-FORMULAR ----
-# with st.container():
-#     st.write("---")
-#     st.header("Kontaktiere uns!")
-#     st.write("Wenn du Fragen, Anregungen oder Anfragen für Konzerte hast, gib' uns gerne Bescheid. Wir melden uns bei dir!")
-#     st.write("##")
-
-#     # Documention: https://formsubmit.co/ !!! CHANGE EMAIL ADDRESS !!!
-#     contact_form = """
-#     <form action="https://formsubmit.co/laurent_kurzschenkel@hotmail.de" method="POST">
-#         <input type="hidden" name="_captcha" value="true">
-#         <input type="text" name="name" placeholder="Name" required>
-#         <input type="email" name="email" placeholder="E-Mail-Adresse" required>
-#         <textarea name="message" placeholder="Deine Nachricht" required></textarea>
-#         <button type="submit">Senden</button>
-#     </form>
-#     """
-#     left_column, right_column = st.columns(2)
-#     with left_column:
-#         st.markdown(contact_form, unsafe_allow_html=True)
-#     with right_column:
-#         st.empty()
