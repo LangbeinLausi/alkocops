@@ -108,6 +108,10 @@ with tabs[1]:
             st.write(html_code_live, unsafe_allow_html=True) 
         with left_column:
             st.header("Konzerte")
+            st.subheader("2025:")
+            st.write("25.10. // Schlosskeller Emmendingen // tba")
+            st.write("11.07. // Binger Open Air")
+            st.write("07.07. // Café Atlantik Freiburg // Maid Of Ace")
             st.subheader("2024:")
             st.write("02.11. // Jugendzentrum Denzlingen // Enraged Minority und Don Fritte")
             st.write("18.10. // YouRock Emmendingen // Rawside und Die Sprittler")
