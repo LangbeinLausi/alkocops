@@ -1,0 +1,39 @@
+name: Keep Alive with Counter
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # täglich 07:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update-counter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update counter
+        run: |
+          COUNTER_FILE="keepalive-counter.md"
+
+          if [ ! -f "$COUNTER_FILE" ]; then
+            COUNT=1
+          else
+            COUNT=$(grep -oP '(?<=Count: )\d+' "$COUNTER_FILE")
+            COUNT=$((COUNT + 1))
+          fi
+
+          echo -e "# Keepalive Counter\n\nLast run: $(date -u)\n\nCount: $COUNT" > "$COUNTER_FILE"
+
+
+      - name: Commit and push changes
+        run: |
+          git add keepalive-counter.md
+          git commit -m "chore: increment keepalive counter"
+          git push
