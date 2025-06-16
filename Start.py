@@ -110,6 +110,7 @@ with tabs[1]:
             st.header("Konzerte")
             st.subheader("2025:")
             st.write("25.10. // Schlosskeller Emmendingen // tba")
+            st.write("13.09. // Reihern im Roggen // Irgendwo im Saarland")
             st.write("11.07. // Binger Open Air")
             st.write("07.07. // Café Atlantik Freiburg // Maid Of Ace")
             st.subheader("2024:")
