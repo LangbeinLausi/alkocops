@@ -2,8 +2,11 @@ name: Keep Alive with Counter
 
 on:
   schedule:
-    - cron: '0 7 * * *'  # täglich 07:00 UTC
-  workflow_dispatch:
+    - cron: '0 7 * * *'  # Täglich um 07:00 UTC
+  workflow_dispatch:      # Manuell startbar
+
+permissions:
+  contents: write         # ⬅️ Erlaubt Pushen ins Repo
 
 jobs:
   update-counter:
@@ -13,24 +16,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Git
+      - name: Set up Git identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Update counter
+      - name: Update counter file
         run: |
           COUNTER_FILE="keepalive-counter.md"
 
           if [ ! -f "$COUNTER_FILE" ]; then
             COUNT=1
           else
-            COUNT=$(grep -oP '(?<=Count: )\d+' "$COUNTER_FILE")
+            COUNT=$(grep -oP '(?<=Count: )\d+' "$COUNTER_FILE" || echo 0)
             COUNT=$((COUNT + 1))
           fi
 
           echo -e "# Keepalive Counter\n\nLast run: $(date -u)\n\nCount: $COUNT" > "$COUNTER_FILE"
-
 
       - name: Commit and push changes
         run: |
