@@ -42,7 +42,10 @@ jobs:
 
       - name: Ping Streamlit App
         run: |
-          curl -s -o /dev/null -w "%{http_code}\n" -L https://alkocops.streamlit.app/
+          echo "Pinging Streamlit App..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -L https://alkocops.streamlit.app/ || echo "error")
+          echo "Response Code: $STATUS"
+
 
       - name: Commit and push changes
         run: |
