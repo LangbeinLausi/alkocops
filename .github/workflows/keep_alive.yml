@@ -1,17 +1,16 @@
-name: Keep Alive with Counter
+name: Keep Alive with Counter and App Ping
 
 on:
   schedule:
-    - cron: '0 7 * * *'  # Täglich um 07:00 UTC
-  workflow_dispatch:      # Manuell startbar
+    - cron: '0 7 * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: write         # ⬅️ Erlaubt Pushen ins Repo
+  contents: write
 
 jobs:
-  update-counter:
+  keepalive:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -21,21 +20,32 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Update counter file
+      - name: Update counter and log
         run: |
           COUNTER_FILE="keepalive-counter.md"
+          LOG_FILE="keepalive-log.md"
+          NOW=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
           if [ ! -f "$COUNTER_FILE" ]; then
             COUNT=1
           else
-            COUNT=$(grep -oP '(?<=Count: )\d+' "$COUNTER_FILE" || echo 0)
+            COUNT=$(grep -oP '(?<=\| )\d+(?= \|)' "$COUNTER_FILE" || echo 0)
             COUNT=$((COUNT + 1))
           fi
 
-          echo -e "# Keepalive Counter\n\nLast run: $(date -u)\n\nCount: $COUNT" > "$COUNTER_FILE"
+          echo -e "# 🔄 Keepalive Counter\n" > "$COUNTER_FILE"
+          echo "| Letzter Lauf | Count |" >> "$COUNTER_FILE"
+          echo "|--------------|--------|" >> "$COUNTER_FILE"
+          echo "| $NOW | $COUNT |" >> "$COUNTER_FILE"
+
+          echo "| $NOW | Run #$COUNT |" >> "$LOG_FILE"
+
+      - name: Ping Streamlit App
+        run: |
+          curl -s -o /dev/null -w "%{http_code}\n" https://alkocops.streamlit.app/
 
       - name: Commit and push changes
         run: |
-          git add keepalive-counter.md
-          git commit -m "chore: increment keepalive counter"
+          git add keepalive-counter.md keepalive-log.md
+          git commit -m "chore: pinged app and updated counter"
           git push
