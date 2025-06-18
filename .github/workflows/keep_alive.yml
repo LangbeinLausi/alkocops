@@ -42,7 +42,7 @@ jobs:
 
       - name: Ping Streamlit App
         run: |
-          curl -s -o /dev/null -w "%{http_code}\n" https://alkocops.streamlit.app/
+          curl -s -o /dev/null -w "%{http_code}\n" -L https://alkocops.streamlit.app/
 
       - name: Commit and push changes
         run: |
