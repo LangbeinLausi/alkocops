@@ -45,7 +45,8 @@ st.title("Die Alkocops 🍻👮‍♂️")
 tab_titles = [
     "Start",
     "Konzerte",
-    "Texte"
+    "Texte",
+    "Bier-Counter"
 ]
 
 tabs = st.tabs(tab_titles)
@@ -817,3 +818,45 @@ with tabs[2]:
             st.write("")
             st.write("")
             st.write("")
+
+
+with tabs[3]:
+# Bier-Community
+    st.title("🍺 Bier-Community")
+
+    # Initialisiere Bier-Counter im Session-State
+    if "bier_counter" not in st.session_state:
+        st.session_state.bier_counter = 0
+
+    # Button zum Bier zählen
+    if st.button("Ich hab ein Bier getrunken!"):
+        st.session_state.bier_counter += 1
+
+    st.write(f"Gesamt getrunkene Biere: **{st.session_state.bier_counter}**")
+
+    st.markdown("---")
+
+    # Kommentarbereich
+    st.subheader("Erzähl uns, wie lecker dein letztes Bier war!")
+
+    if "comments" not in st.session_state:
+        st.session_state.comments = []
+
+    # Textfeld für Kommentar
+    comment = st.text_area("Dein Kommentar", "")
+
+    if st.button("Kommentar abschicken"):
+        if comment.strip():
+            st.session_state.comments.append(comment.strip())
+            st.success("Danke für deinen Kommentar!")
+        else:
+            st.warning("Bitte schreibe etwas, bevor du abschickst.")
+
+    st.markdown("### Kommentare")
+
+    # Zeige Kommentare in umgekehrter Reihenfolge (neueste oben)
+    for c in reversed(st.session_state.comments):
+        st.write(f"> {c}")
+
+
+
