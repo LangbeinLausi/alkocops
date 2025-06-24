@@ -1,60 +1,26 @@
-name: Keep Streamlit App Awake
+name: Restart Streamlit App Daily
 
 on:
   schedule:
-    - cron: '0 7 * * *'  # Täglich um 7:00 UTC
-  workflow_dispatch:      # Manueller Start möglich
+    - cron: '0 6 * * *'  # Jeden Tag um 6 Uhr UTC
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  keepalive:
+  restart:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Git identity
+      - name: Set Git Identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Ping Streamlit App
+      - name: Create empty commit
         run: |
-          echo "Pinging Streamlit App..."
-          STATUS=$(curl -s -L -o /dev/null -w "%{http_code}" https://alkocops.streamlit.app) || true
-          echo "Response Code: $STATUS"
-
-          echo "$STATUS" > .http_status.tmp  # Zwischenspeichern für nächsten Schritt
-
-      - name: Update counter and log
-        run: |
-          COUNTER_FILE="keepalive-counter.md"
-          LOG_FILE="keepalive-log.md"
-          STATUS=$(cat .http_status.tmp)
-          NOW=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-
-          # Counter aktualisieren
-          if [ ! -f "$COUNTER_FILE" ]; then
-            COUNT=1
-          else
-            LAST=$(grep -oP '\| \K\d+(?= \|)' "$COUNTER_FILE" | head -n 1)
-            COUNT=$((LAST + 1))
-          fi
-
-          # Counter-Datei schreiben
-          echo -e "# 🔄 Keepalive Counter\n" > "$COUNTER_FILE"
-          echo "| Letzter Lauf | Count | HTTP-Code |" >> "$COUNTER_FILE"
-          echo "|--------------|--------|------------|" >> "$COUNTER_FILE"
-          echo "| $NOW | $COUNT | $STATUS |" >> "$COUNTER_FILE"
-
-          # Logfile ergänzen
-          echo "| $NOW | Run #$COUNT | HTTP $STATUS |" >> "$LOG_FILE"
-
-      - name: Commit and push changes
-        run: |
-          git add keepalive-counter.md keepalive-log.md
-          git commit -m "chore: keepalive ping #$COUNT - HTTP $STATUS"
+          git commit --allow-empty -m "chore: keepalive trigger"
           git push
