@@ -94,7 +94,7 @@ tab_titles = [
     "Start",
     "Konzerte",
     "Texte",
-    "Bier-Counter"
+    "Community"
 ]
 
 tabs = st.tabs(tab_titles)
@@ -868,27 +868,27 @@ with tabs[2]:
             st.write("")
 
 with tabs[3]:
-# Bier-Community
-    st.title("🍺 Alkocops-Community-Count")
-
+# Community
     count, record_id = get_bier_count()
 
-    if st.button("Ich hab ein Bier getrunken!"):
-        count = increment_bier_count(record_id, count)
-        st.success(f"Neuer Stand: {count} Biere")
+    st.header("Community-Count: Hast du heute schon ein leckeres Bier getrunken?")
 
-    st.write(f"Gesamt getrunkene Biere: **{count}**")
+    if st.button("Ja, ich habe ein Bier getrunken! 🍻"):
+        count = increment_bier_count(record_id, count)
+        st.success(f"Vielen Dank, dass du uns mit deinem Bier unterstützt! 💕")
+
+    st.subheader(f"Dank der zauberhaften Alkocops-Community wurden schon ***{count} Biere*** verhaftet! 🚓🚨")
 
     st.markdown("---")
-    st.subheader("Sag' mal, wie lecker war denn dein letztes Bier?")
-    comment = st.text_area("Kommentar")
+    st.header("Kommentare 🫠")
+    comment = st.text_area("Wie schmeckt dir Bier? Wann und wo hast du uns gesehen? Wie fandest du unseren Auftritt?")
 
     if st.button("Kommentar abschicken"):
         if comment.strip():
             add_comment(comment.strip())
-            st.success("Danke für deinen Beitrag!")
+            st.success("Danke für deinen Beitrag!Jetzt hol' dir ein Bier und erzähle deinen Freunden von den Alkocops!")
         else:
-            st.warning("Bitte schreib erst etwas.")
+            st.warning("Boah, ey, du musst erstmal etwas schreiben, du Eumel!")
 
     st.markdown("### Kommentare")
     for c in get_comments():
