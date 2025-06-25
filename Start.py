@@ -4,6 +4,9 @@ from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 from streamlit_extras.let_it_rain import rain
 from PIL import Image
+from pyairtable import Api, Table
+from streamlit import secrets
+from datetime import datetime
 
 
 # --- Konfiguration ---
@@ -21,6 +24,51 @@ def local_css(file_name):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 local_css("style/style.css")
+
+
+# --- AIRTABLE ---
+
+# Airtable Zugangsdaten (aus secrets.toml)
+AIRTABLE_PAT = st.secrets["airtable"]["pat"]
+AIRTABLE_BASE_ID = st.secrets["airtable"]["base_id"]
+
+api = Api(AIRTABLE_PAT)
+comments_table = api.base(AIRTABLE_BASE_ID).table("Comments")
+counter_table = api.base(AIRTABLE_BASE_ID).table("Counter")
+
+# === Counter-Funktion ===
+
+def get_bier_count():
+    record = counter_table.first(formula="{id} = '1'")
+    if record:
+        return record["fields"].get("count", 0), record["id"]
+    else:
+        return 0, None
+
+def increment_bier_count(record_id, count):
+    if record_id:
+        new_count = count + 1
+        counter_table.update(record_id, {"count": new_count})
+        return new_count
+    else:
+        return count
+
+# === Kommentar-Funktionen ===
+def add_comment(text):
+    comments_table.create({
+        "text": text,
+        "timestamp": datetime.now().isoformat(timespec="seconds")
+    })
+
+def get_comments():
+    records = comments_table.all(sort=["-timestamp"])
+    return [
+        {
+            "text": r["fields"].get("text", ""),
+            "timestamp": r["fields"].get("timestamp", "")
+        }
+        for r in records
+    ]
 
 # ---- LOAD ASSETS ----
 lottie_rock = load_lottieurl("https://lottie.host/c27869d1-603f-4f6e-9b91-fc2cf17c128d/xnNh83q1DP.json")
@@ -819,44 +867,29 @@ with tabs[2]:
             st.write("")
             st.write("")
 
-
 with tabs[3]:
 # Bier-Community
-    st.title("🍺 Bier-Community")
+    st.title("🍺 Alkocops-Community-Count")
 
-    # Initialisiere Bier-Counter im Session-State
-    if "bier_counter" not in st.session_state:
-        st.session_state.bier_counter = 0
+    count, record_id = get_bier_count()
 
-    # Button zum Bier zählen
     if st.button("Ich hab ein Bier getrunken!"):
-        st.session_state.bier_counter += 1
+        count = increment_bier_count(record_id, count)
+        st.success(f"Neuer Stand: {count} Biere")
 
-    st.write(f"Gesamt getrunkene Biere: **{st.session_state.bier_counter}**")
+    st.write(f"Gesamt getrunkene Biere: **{count}**")
 
     st.markdown("---")
-
-    # Kommentarbereich
-    st.subheader("Erzähl uns, wie lecker dein letztes Bier war!")
-
-    if "comments" not in st.session_state:
-        st.session_state.comments = []
-
-    # Textfeld für Kommentar
-    comment = st.text_area("Dein Kommentar", "")
+    st.subheader("Sag' mal, wie lecker war denn dein letztes Bier?")
+    comment = st.text_area("Kommentar")
 
     if st.button("Kommentar abschicken"):
         if comment.strip():
-            st.session_state.comments.append(comment.strip())
-            st.success("Danke für deinen Kommentar!")
+            add_comment(comment.strip())
+            st.success("Danke für deinen Beitrag!")
         else:
-            st.warning("Bitte schreibe etwas, bevor du abschickst.")
+            st.warning("Bitte schreib erst etwas.")
 
     st.markdown("### Kommentare")
-
-    # Zeige Kommentare in umgekehrter Reihenfolge (neueste oben)
-    for c in reversed(st.session_state.comments):
-        st.write(f"> {c}")
-
-
-
+    for c in get_comments():
+        st.write(f"🕒 {c['timestamp']}  \n> {c['text']}")
